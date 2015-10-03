@@ -1,0 +1,42 @@
+<h1>基本情報の編集</h1>
+<hr />
+<center>
+  <table>
+    <td width=350>
+      <%= form_for(@user) do |f| %>
+      
+          <%= render 'shared/error_messages', object: f.object %> <!-- ここを追加 -->
+          
+          <!--
+          氏名:<br />
+          <%= f.text_field :name, :size=>"30" , class: 'form-control'%>
+          <br />
+    
+          ID:<br />
+          <%= f.text_field :email, :size=>"40", class: 'form-control'%>
+          <br />
+          
+          パスワード:<br />
+          <%= f.password_field :password, :size=>"40", class: 'form-control'%>
+          <br />
+          -->
+          
+          <%= f.label :area %>
+          <%= f.text_field :area, :size=>"10", class: 'form-control'%>
+          <br />
+
+          <%= f.label :e_mail %>
+          <%= f.text_field :e_mail, :size=>"40", class: 'form-control'%>
+          <br />
+        
+          <%= f.label :profile %>
+          <%= f.text_area :profile, :size=>"50x5", class: 'form-control'%>
+          <br />
+        
+          <hr />
+          <%= f.submit "　確　定　", class:"btn btn-sm btn-primary" %>
+      
+      <% end %>
+    </td>
+  </table>
+</center>
