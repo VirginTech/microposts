@@ -13,7 +13,7 @@
       <table class="table table-striped" border=0>
         <tr>
           <td>
-            地　域
+            <%= User:: AREA_LABEL %>
           </td>
           <td>
             <%= @user.area %>
@@ -21,15 +21,15 @@
         </tr>
         <tr>
           <td>
-            電子メール
+            <%= User::PHONE_LABEL %>
           </td>
           <td>
-            <%= @user.e_mail %>
+            <%= @user.phone %>
           </td>
         </tr>
         <tr>
           <td>  
-            プロフィール
+            <%= User::PROFILE_LABEL %>
           </td>
           <td>
             <%= simple_format(@user.profile) %>

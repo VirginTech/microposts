@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
+      session[:user_id] = @user.id
       redirect_to @user # ここを修正
     else
       render 'new'
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation,:profile,:e_mail,:area)
+                                 :password_confirmation,:profile,:phone,:area)
   end
   
   def set_profile
