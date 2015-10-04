@@ -8,23 +8,36 @@
 <hr />
 
 <center>
-  <table>
-    <td width=350>
-      
-      地域：
-      <%= @user.area %>
-      <br />
-      
-      電子メール：
-      <%= @user.e_mail %>
-      <br />
-      
-      プロフィール：
-      <%= @user.profile %>
-      <br />
-
-    </td>
-  </table>
+  <table><td width=500>
+    <div class="table-responsive">
+      <table class="table table-striped" border=0>
+        <tr>
+          <td>
+            地　域
+          </td>
+          <td>
+            <%= @user.area %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            電子メール
+          </td>
+          <td>
+            <%= @user.e_mail %>
+          </td>
+        </tr>
+        <tr>
+          <td>  
+            プロフィール
+          </td>
+          <td>
+            <%= simple_format(@user.profile) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </td></table>
 </center>
 
 <hr />
