@@ -1,43 +1,41 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
-
-<center><h3>プロフィール</h3></center>
-
-<hr />
-
-<center>
-  <table><td width=500>
-    <div class="table-responsive">
-      <table class="table table-striped" border=0>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      
+      <table border=0>
+        <tr>
+          <td colspan=2>
+            <h1>
+              <%= gravatar_for @user %>
+              <%= @user.name %>
+            </h1>
+          </td>
+        </tr>
+        
         <tr>
           <td>
-            <%= User:: AREA_LABEL %>
-          </td>
-          <td>
+            <b><%= User:: AREA_LABEL %></b>
             <%= @user.area %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= User::PHONE_LABEL %>
-          </td>
-          <td>
+            <br />
+            <b><%= User::PHONE_LABEL %></b>
             <%= @user.phone %>
-          </td>
-        </tr>
-        <tr>
-          <td>  
-            <%= User::PROFILE_LABEL %>
-          </td>
-          <td>
+            <br />
+            <b><%= User::PROFILE_LABEL %></b>
+            <br />
             <%= simple_format(@user.profile) %>
           </td>
         </tr>
       </table>
-    </div>
-  </td></table>
-</center>
-
-<hr />
+      
+    </section>
+  </aside>
+  
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3><%= @user.name %>さんの投稿 (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
+  </div>
+</div>
