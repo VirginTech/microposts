@@ -27,9 +27,9 @@
         </tr>
       </table>
       
-      <%= link_to "フォロー", followings_path %>
+      <%= link_to "フォロー", following_user_path(@user) %>
       (<%= @user.following_users.count %>)
-      <%= link_to "フォロワー", followers_path %>
+      <%= link_to "フォロワー", follower_user_path(@user) %>
       (<%= @user.follower_users.count %>)
       
     </section>

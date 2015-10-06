@@ -1,16 +1,33 @@
 class UsersController < ApplicationController
   
-  before_action :set_profile, only: [:edit, :update]
+  before_action :set_profile, only: [:edit, :update, :following, :follower]
   
-  def followings
-    @user = User.find(session[:user_id])
+  #====================================
+  #フォロー／フォロワー取得（メンバールーティング）
+  #====================================
+  def following
+    @user = User.find(params[:id]) 
     @followings = @user.following_users
   end
   
-  def followers
-    @user = User.find(session[:user_id])
+  def follower
+    @user = User.find(params[:id]) 
     @followers = @user.follower_users
   end
+  
+  #===============================
+  #自分のみのフォロー／フォロワー取得
+  #===============================
+  #def followings
+  #  @user = User.find(session[:user_id])
+  #  @followings = @user.following_users
+  #end
+  #
+  #def followers
+  #  @user = User.find(session[:user_id])
+  #  @followers = @user.follower_users
+  #end
+  #===============================
   
   def edit
   end
