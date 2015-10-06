@@ -2,6 +2,16 @@ class UsersController < ApplicationController
   
   before_action :set_profile, only: [:edit, :update]
   
+  def followings
+    @user = User.find(session[:user_id])
+    @followings = @user.following_users
+  end
+  
+  def followers
+    @user = User.find(session[:user_id])
+    @followers = @user.follower_users
+  end
+  
   def edit
   end
   

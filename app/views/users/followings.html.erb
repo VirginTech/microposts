@@ -1,0 +1,18 @@
+<center>
+  <h3><%=@user.name %>さんがフォローしている人</h3>
+  <table>
+    <% @followings.each do |followings| %>
+      <tr>
+        <td width=300>
+          <ol class="microposts">
+            <li>
+              <%= link_to gravatar_for(followings, size: 50), followings %>
+              <%= followings.name %><br />
+              <%= link_to "view profile", followings %>
+            </li>
+          </ol>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</center>
