@@ -17,8 +17,13 @@
     
     <!-- タイムライン表示 -->
     <div class="col-md-8">
-      <h3>Micropost Feed</h3>
+      <h3><%= current_user.name %>さんのタイムライン</h3>
+      
+      <!-- ページネーション表示 -->
+      <%= page_entries_info @feed_items %>
       <%= render 'shared/feed' %>
+      <%= paginate @feed_items %>
+      
     </div>
     
   </div>

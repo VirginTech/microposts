@@ -7,12 +7,14 @@ class UsersController < ApplicationController
   #====================================
   def following
     @user = User.find(params[:id]) 
-    @followings = @user.following_users
+    #ページネーション付き
+    @followings = @user.following_users.page(params[:page]).per(5)
   end
   
   def follower
     @user = User.find(params[:id]) 
-    @followers = @user.follower_users
+    #ページネーション付き
+    @followers = @user.follower_users.page(params[:page]).per(5)
   end
   
   #===============================
@@ -34,7 +36,8 @@ class UsersController < ApplicationController
   
   def show # 追加
    @user = User.find(params[:id])
-   @microposts = @user.microposts
+   #降順（ページネーション付き）
+   @microposts = @user.microposts.order(created_at: :desc).page(params[:page]).per(7)
   end
   
   def new
