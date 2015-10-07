@@ -1,5 +1,17 @@
+<%
+  #降順（ページネーション付き）
+  @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page]).per(7)
+  #昇順（ページネーション付き）
+  #@feed_items = current_user.feed_items.includes(:user).order(:created_at).page(params[:page]).per(7)
+%>
+
 <% if @feed_items.any? %>
   <ol class="microposts">
+    
+    <!-- ページネーション表示 -->
+    <%= page_entries_info @feed_items %>
     <%= render @feed_items %>
+    <%= paginate @feed_items %>
+    
   </ol>
 <% end %>
