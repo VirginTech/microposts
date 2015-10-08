@@ -8,6 +8,11 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost 投稿されました!"
       redirect_to root_url
     else
+      #降順（ページネーション付き）
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page]).per(7)
+      #昇順（ページネーション付き）
+      #@feed_items = current_user.feed_items.includes(:user).order(:created_at).page(params[:page]).per(7)
+  
       render 'static_pages/home'
     end
   end
