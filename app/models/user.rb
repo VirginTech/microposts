@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   
+  #===========================
   #定数
+  #===========================
   NAME_LABEL = "氏　名 :"
   ID_LABEL = "ＩＤ (Ｅメール) :"
   PASSWORD_LABEL = "パスワード (変更する場合のみ) :"
@@ -9,6 +11,9 @@ class User < ActiveRecord::Base
   PHONE_LABEL = "電話番号 :"
   PROFILE_LABEL = "プロフィール :"
 
+  #===========================
+  #バリデーション
+  #===========================
   before_save { self.email = email.downcase }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -32,6 +37,9 @@ class User < ActiveRecord::Base
   
   has_many :microposts
   
+  #===========================
+  #フォロー／フォロワー
+  #===========================
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
@@ -61,5 +69,36 @@ class User < ActiveRecord::Base
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
   end
+  
+  #===========================
+  #お気に入り
+  #===========================
+  has_many :forward_bookmarks_relationship, class_name:  "Bookmark",
+                                            foreign_key: "user_id",
+                                            dependent:   :destroy
+  has_many :bookmarking_posts, through: :forward_bookmarks_relationship, source: :post
+  
+  has_many :reverse_bookmarks_relationship, class_name:  "Bookmark",
+                                            foreign_key: "post_id",
+                                            dependent:   :destroy
+  has_many :bookmarking_users, through: :reverse_bookmarks_relationship, source: :user
+  
+  # 投稿をブックマークする
+  def bookmarking(other_post)
+    forward_bookmarks_relationship.create(post_id: other_post.id)
+  end
+
+  # ブックマークを解除する
+  def unbookmarking(other_post)
+    forward_bookmarks_relationship.find_by(post_id: other_post.id).destroy
+  end
+
+  # 投稿をブックマークしてるかどうか？
+  def bookmarking?(other_post)
+    bookmarking_posts.include?(other_post)
+  end
+  
+  
+  
   
 end
