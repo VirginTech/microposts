@@ -71,17 +71,12 @@ class User < ActiveRecord::Base
   end
   
   #===========================
-  #お気に入り
+  #お気に入り(正引：ユーザー〜マイクロポスト)
   #===========================
   has_many :forward_bookmarks_relationship, class_name:  "Bookmark",
                                             foreign_key: "user_id",
                                             dependent:   :destroy
   has_many :bookmarking_posts, through: :forward_bookmarks_relationship, source: :post
-  
-  has_many :reverse_bookmarks_relationship, class_name:  "Bookmark",
-                                            foreign_key: "post_id",
-                                            dependent:   :destroy
-  has_many :bookmarking_users, through: :reverse_bookmarks_relationship, source: :user
   
   # 投稿をブックマークする
   def bookmarking(other_post)

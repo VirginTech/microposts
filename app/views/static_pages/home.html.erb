@@ -9,6 +9,8 @@
       (<%= current_user.following_users.count %>)
       <%= link_to "フォロワー", follower_user_path(current_user) %>
       (<%= current_user.follower_users.count %>)
+      <%= link_to "お気に入り", bookmarking_user_path(current_user) %>
+      (<%= current_user.bookmarking_posts.count %>)
       
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>

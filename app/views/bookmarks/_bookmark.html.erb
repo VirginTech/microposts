@@ -1,0 +1,25 @@
+<li id="micropost-<%= bookmarkings.id %>">
+  <%= link_to gravatar_for(bookmarkings.user, size: 50), bookmarkings.user %>
+  <span class="user"><%= link_to bookmarkings.user.name, bookmarkings.user %></span>
+  <span class="content"><%= bookmarkings.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(bookmarkings.created_at) %> ago.
+    
+    <!--削除リンク-->
+    <% if current_user == bookmarkings.user %>
+      [<%= link_to "削除", bookmarkings, method: :delete,
+                                       data: { confirm: "You sure?" } %>]
+    <% end %>
+    
+    <!--お気に入り-->
+    <% if current_user.bookmarking?(bookmarkings) %>
+      <%= link_to image_tag('star_G.png',{:border => '0', :alt => 'お気に入り解除'}),
+                    bookmark_path(bookmarkings, redirect_url: request.url), method: :delete %>
+      <%= bookmarkings.bookmarking_users.count %>
+    <% else %>
+      <%= link_to image_tag('star_B.png',{:border => '0', :alt => 'お気に入り登録'}),
+                    bookmarks_path(post_id: bookmarkings.id, redirect_url: request.url), method: :post %>
+      <%= bookmarkings.bookmarking_users.count %>
+    <% end %>
+  </span>
+</li>

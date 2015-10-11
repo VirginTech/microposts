@@ -39,24 +39,22 @@
 
 
   <div class="col-md-8">
-    <h3><%=@user.name %>さんをフォローしている人</h3>
+    <h3><%=@user.name %>さんのブックマーク</h3>
     <!-- ページネーション表示 -->
-    <%= page_entries_info @followers %>
+    <%= page_entries_info @bookmarkings %>
     <table>
-      <% @followers.each do |followers| %>
+      <% @bookmarkings.each do |bookmarkings| %>
         <tr>
-          <td width=300>
+          <td width=500>
             <ol class="microposts">
-              <li>
-                <%= link_to gravatar_for(followers, size: 50), followers %>
-                <%= followers.name %><br />
-                <%= link_to "view profile", followers %>
-              </li>
+              <%# render @bookmarkings %>
+              <%#Micropostモデルなので、microposts/_micropost.html.erbが呼ばれてしまう %>
+              <%= render partial: 'bookmarks/bookmark', locals: { bookmarkings: bookmarkings } %>
             </ol>
           </td>
         </tr>
       <% end %>
     </table>
-    <%= paginate @followers %>
+    <%= paginate @bookmarkings %>
   </div>
 </div>

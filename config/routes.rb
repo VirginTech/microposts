@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     member do
       get 'following'
       get 'follower'
+      get 'bookmarking'
+      get 'bookmarker'
     end
   end
 
