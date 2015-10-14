@@ -1,0 +1,25 @@
+<h1>ユーザー一覧</h1>
+
+<center>
+  <!-- ページネーション表示 -->
+  <%= page_entries_info @users %>
+  <table>
+    <% @users.each do |users| %>
+      <tr>
+        <td width=500>
+          <ol class="microposts">
+            <li>
+              <% if current_user.following?(users) %>
+                フォローしています。<br />
+              <% end %>
+              <%= link_to gravatar_for(users, size: 50), users %>
+              <%= users.name %><br />
+              <%= link_to "view profile", users %>
+            </li>
+          </ol>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @users %>
+</center>

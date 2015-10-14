@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :microposts
   resources :relationships, only: [:create, :destroy]
   resources :bookmarks, only: [:create, :destroy]
+  resources :retweets, only: [:create, :destroy]
   
   #メンバールーティング
   resources :users do
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
       get 'following'
       get 'follower'
       get 'bookmarking'
-      get 'bookmarker'
+      #get 'bookmarker'
     end
   end
 

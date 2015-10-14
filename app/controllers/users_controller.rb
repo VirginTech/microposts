@@ -3,7 +3,14 @@ class UsersController < ApplicationController
   before_action :set_profile, only: [:edit, :update, :following, :follower, :bookmarking]
   
   #====================================
-  #ブックマーク（メンバールーティング）
+  #ユーザー一覧
+  #====================================
+  def index
+    @users=User.all.page(params[:page]).per(5)
+  end
+  
+  #====================================
+  #ブックマーク取得（メンバールーティング）
   #====================================
   def bookmarking
     @user = User.find(params[:id])
