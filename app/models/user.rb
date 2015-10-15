@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
   
+  mount_uploader :avatar, AvatarUploader
+  
   #===========================
   #定数
   #===========================
+  AVATAR_LABEL = "アバター"
   NAME_LABEL = "氏　名 :"
   ID_LABEL = "ＩＤ (Ｅメール) :"
   PASSWORD_LABEL = "パスワード (変更する場合のみ) :"
