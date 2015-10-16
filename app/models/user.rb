@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
+
+  has_secure_password
+  has_many :microposts
   
   #===========================
   #定数
   #===========================
-  AVATAR_LABEL = "アバター"
+  AVATAR_LABEL = "アバター :"
   NAME_LABEL = "氏　名 :"
   ID_LABEL = "ＩＤ (Ｅメール) :"
   PASSWORD_LABEL = "パスワード (変更する場合のみ) :"
@@ -32,14 +35,9 @@ class User < ActiveRecord::Base
 
   validates :area, presence: false, length: { maximum: 50 }, on: :update
 
-  validates :phone, presence: false, length: { maximum: 15 }, 
-                    format: { with: VALID_PHONE_REGEX },on: :update
+  validates :phone, presence: false, length: { maximum: 15 }, on: :update
 
 
-  has_secure_password
-  
-  has_many :microposts
-  
   #===========================
   #フォロー／フォロワー
   #===========================

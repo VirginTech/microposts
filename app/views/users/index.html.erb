@@ -12,7 +12,12 @@
               <% if current_user.following?(users) %>
                 フォローしています。<br />
               <% end %>
-              <%= link_to gravatar_for(users, size: 50), users %>
+              <%#= link_to gravatar_for(users, size: 50), users %>
+              <% if users.avatar.present? %>
+                <%= image_tag users.avatar.url, :size => '80x80',class: "gravatar"%>
+              <% else %>
+                <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
+              <% end %>
               <%= users.name %><br />
               <%= link_to "view profile", users %>
             </li>

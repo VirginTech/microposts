@@ -4,21 +4,36 @@
   <% if micropost.origin_id.present? #リツイート元ユーザー %>
     <% retweet_post = Micropost.find(micropost.origin_id) %>
     <%= micropost.user.name %>さんがリツイート<br />
-    <%= link_to gravatar_for(retweet_post.user, size: 50), retweet_post.user %>
+    <%#= link_to gravatar_for(retweet_post.user, size: 50), retweet_post.user %>
+    <% if retweet_post.user.avatar.present? %>
+      <%= image_tag retweet_post.user.avatar.url, :size => '80x80',class: "gravatar"%>
+    <% else %>
+      <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
+    <% end %>
     <span class="user"><%= link_to retweet_post.user.name, retweet_post.user %></span>
   <% else # 通常のユーザー%>
-    <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+    <%#= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+    <% if micropost.user.avatar.present? %>
+      <%= image_tag micropost.user.avatar.url, :size => '80x80',class: "gravatar" %>
+    <% else %>
+      <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
+    <% end %>
     <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <% end %>
   
-  <span class="content"><%= micropost.content %></span>
+  <table border=0>
+    <td>
+      <%= simple_format(micropost.content) %>
+    </td>
+  </table>
+  
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
     <br />
     <!--削除リンク-->
     <% if current_user == micropost.user %>
-      [<%= link_to "削除", micropost, method: :delete,
-                                       data: { confirm: "You sure?" } %>]
+      <%= link_to image_tag('delete.png',{:border => '0', :alt => 'ツイート削除'}), 
+                        micropost, method: :delete, data: { confirm: "You sure?" } %>
     <% end %>
     
     <!--リツイート-->

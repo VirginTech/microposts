@@ -1,5 +1,10 @@
 <li id="micropost-<%= bookmarkings.id %>">
-  <%= link_to gravatar_for(bookmarkings.user, size: 50), bookmarkings.user %>
+  <%#= link_to gravatar_for(bookmarkings.user, size: 50), bookmarkings.user %>
+  <% if bookmarkings.user.avatar.present? %>
+    <%= image_tag bookmarkings.user.avatar.url, :size => '80x80',class: "gravatar"%>
+  <% else %>
+    <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
+  <% end %>
   <span class="user"><%= link_to bookmarkings.user.name, bookmarkings.user %></span>
   <span class="content"><%= bookmarkings.content %></span>
   <span class="timestamp">

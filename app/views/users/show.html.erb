@@ -6,7 +6,12 @@
         <tr>
           <td>
             <h1>
-              <%= gravatar_for @user %>
+              <%#= gravatar_for @user %>
+              <% if @user.avatar.present? %>
+                <%= image_tag @user.avatar.url, :size => '80x80',class: "gravatar"%>
+              <% else %>
+                <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
+              <% end %>
               <%= @user.name %>
             </h1>
           </td>
