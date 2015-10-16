@@ -9,30 +9,34 @@
       
           <%= render 'shared/error_messages', object: f.object %> <!-- ここを追加 -->
           
-          <%= image_tag @user.avatar.url,:size => '80x80' if @user.avatar %>
+          <% if @user.avatar.present? %>
+            <%= image_tag @user.avatar.url,:size => '80x80'  %>
+          <% else %>
+            <%= image_tag 'no_image.png',:size => '80x80' %>
+          <% end %>
           <br />
-          <%= f.label User::AVATAR_LABEL %>
+          <%= f.label t('avatar_label') %>
           <%= f.file_field :avatar %>
   
-          <%= f.label User::NAME_LABEL %>
+          <%= f.label t('name_label') %>
           <%= f.text_field :name, :size=>"30" , class: 'form-control'%>
 
-          <%= f.label User::ID_LABEL %>
+          <%= f.label t('id_label') %>
           <%= f.text_field :email, :size=>"40", class: 'form-control'%>
 
-          <%= f.label User::PASSWORD_LABEL %>
+          <%= f.label "#{t('password_label')} #{'(変更する場合のみ)'}" %>
           <%= f.password_field :password, :size=>"40", class: 'form-control'%>
 
-          <%= f.label User::AREA_LABEL %>
+          <%= f.label t('area_label') %>
           <%= f.text_field :area, :size=>"10", class: 'form-control'%>
 
-          <%= f.label User::PHONE_LABEL %>
+          <%= f.label t('phone_label') %>
           <%= f.text_field :phone, :size=>"40", class: 'form-control'%>
         
-          <%= f.label User::PROFILE_LABEL %>
+          <%= f.label t('profile_label') %>
           <%= f.text_area :profile, :size=>"50x5", class: 'form-control'%>
         
-          <%= f.submit "　確　定　", class:"btn btn-sm btn-primary" %>
+          <%= f.submit t('confirm_label'), class:"btn btn-sm btn-primary" %>
       
       <% end %>
     

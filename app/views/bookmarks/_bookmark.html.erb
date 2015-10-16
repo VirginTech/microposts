@@ -10,6 +10,8 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(bookmarkings.created_at) %> ago.
     
+    <br />
+    
     <!--削除リンク-->
     <% if current_user == bookmarkings.user %>
       [<%= link_to "削除", bookmarkings, method: :delete,
