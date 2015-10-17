@@ -2,7 +2,7 @@
 
 <center>
   <!-- ページネーション表示 -->
-  <%= page_entries_info @users %>
+  <%= page_entries_info @users, entry_name: "ユーザー"  %>
   <table>
     <% @users.each do |users| %>
       <tr>
@@ -19,7 +19,7 @@
                 <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
               <% end %>
               <%= users.name %><br />
-              <%= link_to "view profile", users %>
+              <%= link_to t("view_profile"), users %>
             </li>
           </ol>
         </td>

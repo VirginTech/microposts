@@ -46,7 +46,7 @@
   <div class="col-md-8">
     <h3><%=@user.name %>さんをフォローしている人</h3>
     <!-- ページネーション表示 -->
-    <%= page_entries_info @followers %>
+    <%= page_entries_info @followers ,entry_name: "ユーザー" %>
     <table>
       <% @followers.each do |followers| %>
         <tr>
@@ -60,7 +60,7 @@
                   <%= image_tag('no_image.png',{:size => '80x80',class: "gravatar"}) %>
                 <% end %>
                 <%= followers.name %><br />
-                <%= link_to "view profile", followers %>
+                <%= link_to t("view_profile"), followers %>
               </li>
             </ol>
           </td>

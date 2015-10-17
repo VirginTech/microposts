@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       flash[:info] = "#{@user.name} #{t('flash_login')}"
       redirect_to @user
     else
-      flash[:danger] = 'invalid email/password combination'
+      flash[:danger] = t('flash_danger')
       render 'new'
     end
   end

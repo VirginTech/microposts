@@ -49,7 +49,7 @@
       <ol class="microposts">
         
         <!-- ページネーション表示 -->
-        <%= page_entries_info @microposts %>
+        <%= page_entries_info @microposts, entry_name: "投稿" %>
         <%= render @microposts %>
         <%= paginate @microposts %>
         

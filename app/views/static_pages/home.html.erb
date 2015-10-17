@@ -22,7 +22,7 @@
       <h3><%= current_user.name %>さんのタイムライン</h3>
       
       <!-- ページネーション表示 -->
-      <%= page_entries_info @feed_items %>
+      <%= page_entries_info @feed_items, entry_name: "投稿" %>
       <%= render 'shared/feed' %>
       <%= paginate @feed_items %>
       
