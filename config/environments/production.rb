@@ -77,6 +77,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  config.assets.precompile += ['profile_edit.js']
+  # config.assets.precompile += ['avatar_drag.js']
   
 end

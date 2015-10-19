@@ -189,3 +189,13 @@ span.picture {
     border: 0;
   }
 }
+
+div #disp{
+  width:100px;
+  height:100px;
+  padding:0px; 
+  border:1px solid;
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle;
+}
