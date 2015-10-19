@@ -199,3 +199,23 @@ div #disp{
   text-align:center;
   vertical-align:middle;
 }
+
+.file {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  padding: .0em;
+  border: 1px solid #999;
+  background-color: #eee;
+}
+
+.file input[type="file"] {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0;
+  font-size: 100px;
+  cursor: pointer;
+}
