@@ -6,7 +6,12 @@ class UsersController < ApplicationController
   #ユーザー一覧
   #====================================
   def index
-    @users=User.all.page(params[:page]).per(5)
+    #編集すると順番が入れ替わる
+    #@users=User.all.page(params[:page]).per(5)
+    
+    #順番を固定する
+    @users = User.order(:created_at).page(params[:page]).per(5)
+    @user = User.new
   end
   
   #====================================

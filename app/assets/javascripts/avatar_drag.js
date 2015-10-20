@@ -14,9 +14,9 @@
   {
     var file = event.target.files[0];
     var disp = document.getElementById("disp");
-    var name = document.getElementById("name");
+    //var name = document.getElementById("name");
     disp.innerHTML ="";
-    name.innerHTML ="";
+    //name.innerHTML ="";
     
     //FileReaderオブジェクトの生成
     var reader = new FileReader();
@@ -44,7 +44,7 @@
         img.width=100;
         img.height=100;
         disp.appendChild(img);
-        name.innerHTML = file.name;
+        //name.innerHTML = file.name;
       }
       // readAsDataURLメソッドでファイルの内容を取得
       reader.readAsDataURL(file);
@@ -52,7 +52,7 @@
   }
   
   //==============================
-  //ドロップ操作
+  //ドラッグ＆ドロップ操作
   //==============================
   function onDrop(event) 
   {
