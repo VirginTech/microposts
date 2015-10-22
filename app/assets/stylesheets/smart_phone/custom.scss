@@ -191,6 +191,9 @@ span.picture {
   }
 }
 
+//============
+//画像表示
+//============
 div #disp{
   width:100px;
   height:100px;
@@ -201,6 +204,9 @@ div #disp{
   vertical-align:middle;
 }
 
+//==============
+//フォーム（ファイル選択ダイアログ）
+//==============
 .file {
   display: inline-block;
   overflow: hidden;
@@ -219,4 +225,29 @@ div #disp{
   margin: 0;
   font-size: 100px;
   cursor: pointer;
+}
+
+//================
+//ページネーション
+//================
+.pagination li {
+	display: inline;
+	margin: 0 2px;
+	padding: 0;
+}
+
+//.pagination span,
+.pagination a {
+	display: inline-block;
+	margin-bottom: 5px;
+	padding: 5px 13px;
+	background: #eeeff7;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.pagination a:hover {
+	color: #000;
+	background: #ccf;
+	border-color: #00f;
 }
